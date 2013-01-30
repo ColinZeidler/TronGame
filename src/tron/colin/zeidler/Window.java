@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +16,7 @@ public class Window extends JFrame implements ActionListener {
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
 	Window window;
-	//create grid
+	// create grid
 	Grid grid;
 	// create player
 	Player p1;
@@ -52,18 +53,18 @@ public class Window extends JFrame implements ActionListener {
 
 			}
 		});
-		//create grid
+		// create grid
 		grid = new Grid(x, y);
-		//create player
+		// create player
 		p1 = new Player(50, 50);
 		p1.colour = Color.BLUE;
-		
+
 		p2 = new Player(450, 50);
 		p2.colour = Color.green;
-		
-		p3 = new Player (50, 450);
+
+		p3 = new Player(50, 450);
 		p3.colour = Color.red;
-		
+
 		p4 = new Player(450, 450);
 		p4.colour = Color.ORANGE;
 
@@ -71,20 +72,34 @@ public class Window extends JFrame implements ActionListener {
 	}
 
 	public void pressedKey(KeyEvent e) {
-		char key = e.getKeyChar();
-		if (key == 'a') {
+		String key = e.getKeyText(e.getKeyCode());
+		if (key.equals("A")) {
 			p1.xSpeed = -5;
 			p1.ySpeed = 0;
-		} else if (key == 'd') {
+		} else if (key.equals("D")) {
 			p1.xSpeed = 5;
 			p1.ySpeed = 0;
-		} else if (key == 'w') {
+		} else if (key.equals("W")) {
 			p1.ySpeed = -5;
 			p1.xSpeed = 0;
-		} else if (key == 's') {
+		} else if (key.equals("S")) {
 			p1.ySpeed = 5;
 			p1.xSpeed = 0;
 		}
+		if (key == "Left") {
+			p2.xSpeed = -5;
+			p2.ySpeed = 0;
+		} else if (key == "Right") {
+			p2.xSpeed = 5;
+			p2.ySpeed = 0;
+		} else if (key == "Up") {
+			p2.ySpeed = -5;
+			p2.xSpeed = 0;
+		} else if (key == "Down") {
+			p2.ySpeed = 5;
+			p2.xSpeed = 0;
+		}
+
 	}
 
 	@Override
@@ -95,11 +110,14 @@ public class Window extends JFrame implements ActionListener {
 
 	private void draw() {
 		Graphics c = paper.getGraphics();
-		c.setColor(Color.WHITE);
-		c.fillRect(0, 0,500, 500);
-		grid.grid[p1.x/5][p1.y/5] = 1;
-		grid.draw(c);
+		grid.grid[p1.x / 5][p1.y / 5] = 1;
+		grid.grid[p2.x / 5][p2.y / 5] = 2;
+		grid.grid[p3.x / 5][p3.y / 5] = 3;
+		grid.grid[p4.x / 5][p4.y / 5] = 4;
 		p1.draw(c);
+		p2.draw(c);
+		p3.draw(c);
+		p4.draw(c);
 
 	}
 
