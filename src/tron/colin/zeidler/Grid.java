@@ -16,6 +16,7 @@ public class Grid {
 			}
 		}
 	}
+	//test laptop
 	
 	void draw(Graphics g) {
 		for (int i =0; i< grid.length; i++) {
