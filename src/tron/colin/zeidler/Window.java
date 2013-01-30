@@ -19,6 +19,9 @@ public class Window extends JFrame implements ActionListener {
 	Grid grid;
 	// create player
 	Player p1;
+	Player p2;
+	Player p3;
+	Player p4;
 
 	Window(int x, int y) {
 		setUp(x, y);
@@ -54,6 +57,15 @@ public class Window extends JFrame implements ActionListener {
 		//create player
 		p1 = new Player(50, 50);
 		p1.colour = Color.BLUE;
+		
+		p2 = new Player(450, 50);
+		p2.colour = Color.green;
+		
+		p3 = new Player (50, 450);
+		p3.colour = Color.red;
+		
+		p4 = new Player(450, 450);
+		p4.colour = Color.ORANGE;
 
 		time.start();
 	}
