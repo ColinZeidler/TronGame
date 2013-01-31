@@ -9,12 +9,14 @@ public class Player {
 	Color colour;
 	int xSpeed;
 	int ySpeed;
+	boolean dead;
 	
 	Player(int x, int y) {
 		this.y = y;
 		this.x = x;
 		xSpeed = 0;
 		ySpeed = 0;
+		dead = false;
 	}
 	
 	void draw(Graphics g) {
