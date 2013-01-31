@@ -6,10 +6,9 @@ What Works
 ==========
 1. creating players.
 2. player movement.
+3. player collision.
 
 Needed
 ======
-1. fixing the flashing while moving the player (probably needs buffering)
-2. a reasonable method for drawing the player trails.
-3. collisions between players and their trails.
-4. a menu for selecting how many players.
+1. a menu for selecting how many players.
+2. fix players being killed before they can move.
