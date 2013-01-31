@@ -10,7 +10,7 @@ public class Player {
 	int xSpeed;
 	int ySpeed;
 	boolean dead;
-	
+
 	Player(int x, int y) {
 		this.y = y;
 		this.x = x;
@@ -18,12 +18,12 @@ public class Player {
 		ySpeed = 0;
 		dead = false;
 	}
-	
+
 	void draw(Graphics g) {
 		g.setColor(colour);
 		g.fillRect(x, y, 10, 10);
-		x+=xSpeed;
-		y+=ySpeed;
+		x += xSpeed;
+		y += ySpeed;
 	}
 
 }

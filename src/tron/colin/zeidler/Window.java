@@ -117,9 +117,9 @@ public class Window extends JFrame implements ActionListener {
 		p2.draw(c);
 		p3.draw(c);
 		p4.draw(c);
-		//grid.print();
+		// grid.print();
 		grid.collisionCheck(p1, p2, p3, p4);
-		
+
 		System.out.println("P1 dead:" + p1.dead);
 		System.out.println("P2 dead:" + p2.dead);
 		System.out.println("P3 dead:" + p3.dead);
