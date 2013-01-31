@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -35,6 +33,7 @@ public class Window extends JFrame implements ActionListener {
 		add(paper);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		setResizable(false);
 
 		addKeyListener(new KeyListener() {
 
