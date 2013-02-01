@@ -11,7 +11,7 @@ public class TheGame extends JFrame implements ActionListener {
 
 	public TheGame(String string) {
 		super(string);
-		System.out.println("This is Luke's");
+		
 
 		getContentPane().setLayout(null);
 

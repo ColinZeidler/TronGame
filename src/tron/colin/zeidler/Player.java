@@ -9,7 +9,7 @@ public class Player {
 	Color colour;
 	int xSpeed;
 	int ySpeed;
-	boolean dead;
+	boolean dead, moved;
 
 	Player(int x, int y) {
 		this.y = y;
@@ -17,13 +17,19 @@ public class Player {
 		xSpeed = 0;
 		ySpeed = 0;
 		dead = false;
+		moved=false;
 	}
 
 	void draw(Graphics g) {
 		g.setColor(colour);
 		g.fillRect(x, y, 10, 10);
-		x += xSpeed;
-		y += ySpeed;
+		
+		if(!dead) //if dead, stop in place
+		{
+			x += xSpeed;
+			y += ySpeed;
+		}
+		
 	}
 
 }
