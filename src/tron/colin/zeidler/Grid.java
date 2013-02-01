@@ -14,8 +14,6 @@ public class Grid {
 		}
 	}
 
-	// test laptop
-
 	public void print() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
@@ -29,18 +27,9 @@ public class Grid {
 
 	}
 
-	public void collisionCheck(Player p1, Player p2, Player p3, Player p4) {
+	public void collisionCheck(Player p1) {
 		if (grid[p1.x / 5][p1.y / 5] != 0) {
 			p1.dead = true;
-		}
-		if (grid[p2.x / 5][p2.y / 5] != 0) {
-			p2.dead = true;
-		}
-		if (grid[p3.x / 5][p3.y / 5] != 0) {
-			p3.dead = true;
-		}
-		if (grid[p4.x / 5][p4.y / 5] != 0) {
-			p4.dead = true;
 		}
 
 	}

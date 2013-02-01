@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import java.io.*;
+
 public class Window extends JFrame implements ActionListener {
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
@@ -23,6 +25,13 @@ public class Window extends JFrame implements ActionListener {
 	Player p4;
 
 	Window(int x, int y) {
+		//read kyebindings
+		try {
+			FileReader keyBindings = new FileReader(".\\keyBingings.txt");
+		} catch (FileNotFoundException e) {
+			
+		}
+		
 		setUp(x, y);
 	}
 
@@ -118,7 +127,10 @@ public class Window extends JFrame implements ActionListener {
 		p3.draw(c);
 		p4.draw(c);
 		// grid.print();
-		grid.collisionCheck(p1, p2, p3, p4);
+		grid.collisionCheck(p1);
+		grid.collisionCheck(p2);
+		grid.collisionCheck(p3);
+		grid.collisionCheck(p4);
 
 		System.out.println("P1 dead:" + p1.dead);
 		System.out.println("P2 dead:" + p2.dead);
