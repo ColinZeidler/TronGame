@@ -28,8 +28,13 @@ public class Grid {
 
 	public void collisionCheck(Player aPlayer) {
 		//if moved over already full cell, die.
-		if ((grid[aPlayer.x / 5][aPlayer.y / 5] != 0) && aPlayer.moved) {
-			aPlayer.dead = true;
+		if (aPlayer.moved) {
+			if ((grid[aPlayer.x / 5][aPlayer.y / 5] != 0) && (aPlayer.xSpeed < 0 || aPlayer.ySpeed < 0)) {
+				aPlayer.dead = true;
+			} else if ((grid[aPlayer.x / 5 + 1][aPlayer.y / 5 + 1] != 0) && (aPlayer.xSpeed > 0 || aPlayer.ySpeed > 0)) {
+				aPlayer.dead = true;
+			}
+			
 		}
 
 	}

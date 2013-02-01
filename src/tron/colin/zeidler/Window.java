@@ -119,13 +119,16 @@ public class Window extends JFrame implements ActionListener {
 		{
 			// marking the position of the player for all 4 grid spots
 			grid.grid[players[i].x / 5][players[i].y / 5] = 1;
-
+			grid.grid[players[i].x / 5 + 1][players[i].y / 5] = 1;
+			grid.grid[players[i].x / 5][players[i].y / 5 + 1] = 1;
+			grid.grid[players[i].x / 5 + 1][players[i].y / 5 + 1] = 1;
+			
 			players[i].draw(c); // draws the player at its current location
-
+			
 			// if players go out of bounds TEST players[i]
-			if (players[i].x / 5 > grid.grid.length - 1 
+			if (players[i].x / 5 + 1> grid.grid.length - 1 
 					|| players[i].x / 5 < 0
-					|| players[i].y / 5 > grid.grid[i].length - 1
+					|| players[i].y / 5 + 1> grid.grid[i].length - 1
 					|| players[i].y / 5 < 0) {
 				players[i].x -= players[i].xSpeed;
 				players[i].y -= players[i].ySpeed;
