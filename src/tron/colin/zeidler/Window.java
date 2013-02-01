@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Window extends JFrame implements ActionListener {
+	final String[][] controls = {{"W","A","S","D"},
+								{"Up", "Left", "Down", "Right"},
+								{"U","H","J","K"},
+								{"8","4","5","6"}};
+	
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
 	Window window;
@@ -76,42 +81,25 @@ public class Window extends JFrame implements ActionListener {
 	public void pressedKey(KeyEvent e) {
 		String key = e.getKeyText(e.getKeyCode());
 		
-		//player 1 controls
-		if (key.equals("A")) {
-			players[0].xSpeed = -5;
-			players[0].ySpeed = 0;
-			players[0].moved=true;
-		} else if (key.equals("D")) {
-			players[0].xSpeed = 5;
-			players[0].ySpeed = 0;
-			players[0].moved=true;
-		} else if (key.equals("W")) {
-			players[0].ySpeed = -5;
-			players[0].xSpeed = 0;
-			players[0].moved=true;
-		} else if (key.equals("S")) {
-			players[0].ySpeed = 5;
-			players[0].xSpeed = 0;
-			players[0].moved=true;
-		}
-		
-		//player 2 controls
-		if (key == "Left") {
-			players[1].xSpeed = -5;
-			players[1].ySpeed = 0;
-			players[1].moved=true;
-		} else if (key == "Right") {
-			players[1].xSpeed = 5;
-			players[1].ySpeed = 0;
-			players[1].moved=true;
-		} else if (key == "Up") {
-			players[1].ySpeed = -5;
-			players[1].xSpeed = 0;
-			players[1].moved=true;
-		} else if (key == "Down") {
-			players[1].ySpeed = 5;
-			players[1].xSpeed = 0;
-			players[1].moved=true;
+		// Player controls/key detection
+		for (int i =0; i< players.length; i++) {
+			if (key.equals(controls[i][1])) {
+				players[i].xSpeed = -5;
+				players[i].ySpeed = 0;
+				players[i].moved=true;
+			} else if (key.equals(controls[i][3])) {
+				players[i].xSpeed = 5;
+				players[i].ySpeed = 0;
+				players[i].moved=true;
+			} else if (key.equals(controls[i][0])) {
+				players[i].ySpeed = -5;
+				players[i].xSpeed = 0;
+				players[i].moved=true;
+			} else if (key.equals(controls[i][2])) {
+				players[i].ySpeed = 5;
+				players[i].xSpeed = 0;
+				players[i].moved=true;
+			}
 		}
 
 	}

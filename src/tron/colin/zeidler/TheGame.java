@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
 public class TheGame extends JFrame implements ActionListener {
+	
+	
+	
 	static TheGame frame;
 	int numPlayersChosen = 2;
 
