@@ -11,11 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Window extends JFrame implements ActionListener {
-	final String[][] controls = {{"W","A","S","D"},
-								{"Up", "Left", "Down", "Right"},
-								{"U","H","J","K"},
-								{"NumPad-8","NumPad-4","NumPad-5","NumPad-6"}};
-	
+	final String[][] controls = { { "W", "A", "S", "D" },
+								{ "Up", "Left", "Down", "Right" }, 
+								{ "U", "H", "J", "K" },
+								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
+
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
 	Window window;
@@ -58,8 +58,8 @@ public class Window extends JFrame implements ActionListener {
 		grid = new Grid(x, y);
 		// create players
 		players = new Player[numP];
-		
-		switch(numP) {
+
+		switch (numP) {
 		case 4:
 			players[3] = new Player(450, 450);
 			players[3].colour = Color.ORANGE;
@@ -69,7 +69,7 @@ public class Window extends JFrame implements ActionListener {
 		case 2:
 			players[0] = new Player(50, 50);
 			players[0].colour = Color.BLUE;
-	
+
 			players[1] = new Player(450, 50);
 			players[1].colour = Color.green;
 			break;
@@ -80,26 +80,26 @@ public class Window extends JFrame implements ActionListener {
 
 	public void pressedKey(KeyEvent e) {
 		String key = e.getKeyText(e.getKeyCode());
-		//System.out.println(key);		//debug to get key names
-		
+		// System.out.println(key); //debug to get key names
+
 		// Player controls/key detection
-		for (int i =0; i< players.length; i++) {
+		for (int i = 0; i < players.length; i++) {
 			if (key.equals(controls[i][1])) {
 				players[i].xSpeed = -5;
 				players[i].ySpeed = 0;
-				players[i].moved=true;
+				players[i].moved = true;
 			} else if (key.equals(controls[i][3])) {
 				players[i].xSpeed = 5;
 				players[i].ySpeed = 0;
-				players[i].moved=true;
+				players[i].moved = true;
 			} else if (key.equals(controls[i][0])) {
 				players[i].ySpeed = -5;
 				players[i].xSpeed = 0;
-				players[i].moved=true;
+				players[i].moved = true;
 			} else if (key.equals(controls[i][2])) {
 				players[i].ySpeed = 5;
 				players[i].xSpeed = 0;
-				players[i].moved=true;
+				players[i].moved = true;
 			}
 		}
 
@@ -114,27 +114,32 @@ public class Window extends JFrame implements ActionListener {
 	private void draw() {
 		Graphics c = paper.getGraphics();
 
-		for (int i = 0; i < players.length; i++)			// loops over the array of players 
+		for (int i = 0; i < players.length; i++) // loops over the array of
+													// players
 		{
-		grid.grid[players[i].x / 5][players[i].y / 5] = 1;	// marks the players current location
-		players[i].draw(c);									// draws the player at its current location
-		
-		//if players go out of bounds TEST players[i]
-		if(players[i].x/5>grid.grid.length-1||players[i].x/5<0||players[i].y/5>grid.grid[i].length-1||players[i].y/5<0)
-		{
-			players[i].x-=players[i].xSpeed;
-			players[i].y-=players[i].ySpeed;
-			players[i].dead=true;
-		}
-		
-			grid.collisionCheck(players[i]);				//checks if the player has collided with a trail
-		}
-		
+			// marking the position of the player for all 4 grid spots
+			grid.grid[players[i].x / 5][players[i].y / 5] = 1;
 
-//		System.out.println("P1 dead:" + players[0].dead);
-//		System.out.println("P2 dead:" + players[1].dead);
-//		System.out.println("P3 dead:" + players[2].dead);
-//		System.out.println("P4 dead:" + players[3].dead);		
+			players[i].draw(c); // draws the player at its current location
+
+			// if players go out of bounds TEST players[i]
+			if (players[i].x / 5 > grid.grid.length - 1 
+					|| players[i].x / 5 < 0
+					|| players[i].y / 5 > grid.grid[i].length - 1
+					|| players[i].y / 5 < 0) {
+				players[i].x -= players[i].xSpeed;
+				players[i].y -= players[i].ySpeed;
+				players[i].dead = true;
+			}
+
+			grid.collisionCheck(players[i]); // checks if the player has
+												// collided with a trail
+		}
+
+		// System.out.println("P1 dead:" + players[0].dead);
+		// System.out.println("P2 dead:" + players[1].dead);
+		// System.out.println("P3 dead:" + players[2].dead);
+		// System.out.println("P4 dead:" + players[3].dead);
 
 	}
 
