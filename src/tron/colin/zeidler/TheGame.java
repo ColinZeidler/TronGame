@@ -9,9 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
 public class TheGame extends JFrame implements ActionListener {
-	
-	
-	
 	static TheGame frame;
 	int numPlayersChosen = 2;
 
@@ -22,12 +19,13 @@ public class TheGame extends JFrame implements ActionListener {
 		super(string);
 
 		getContentPane().setLayout(null);
-
+		
+		//radio buttons
 		ButtonGroup playerNum = new ButtonGroup();
 		pButtons = new JRadioButton[3];
 		String[] pButtonLabels = { "2 Player", "3 PLayer", "4 Player" };
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) { // creating player number selections
 			if (i == 0) {
 				pButtons[i] = new JRadioButton(pButtonLabels[i], true);
 			} else {
@@ -39,7 +37,8 @@ public class TheGame extends JFrame implements ActionListener {
 			playerNum.add(pButtons[i]);
 			pButtons[i].addActionListener(this);
 		}
-
+		
+		// Button to launch the actual game
 		launch = new JButton("Launch Game");
 		launch.setSize(120, 30);
 		launch.setLocation(40, 80);
