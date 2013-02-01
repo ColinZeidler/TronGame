@@ -14,7 +14,7 @@ public class Window extends JFrame implements ActionListener {
 	final String[][] controls = {{"W","A","S","D"},
 								{"Up", "Left", "Down", "Right"},
 								{"U","H","J","K"},
-								{"8","4","5","6"}};
+								{"NumPad-8","NumPad-4","NumPad-5","NumPad-6"}};
 	
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
@@ -80,6 +80,7 @@ public class Window extends JFrame implements ActionListener {
 
 	public void pressedKey(KeyEvent e) {
 		String key = e.getKeyText(e.getKeyCode());
+		//System.out.println(key);		//debug to get key names
 		
 		// Player controls/key detection
 		for (int i =0; i< players.length; i++) {
@@ -130,8 +131,8 @@ public class Window extends JFrame implements ActionListener {
 		}
 		
 
-		System.out.println("P1 dead:" + players[0].dead);
-		System.out.println("P2 dead:" + players[1].dead);
+//		System.out.println("P1 dead:" + players[0].dead);
+//		System.out.println("P2 dead:" + players[1].dead);
 //		System.out.println("P3 dead:" + players[2].dead);
 //		System.out.println("P4 dead:" + players[3].dead);		
 
