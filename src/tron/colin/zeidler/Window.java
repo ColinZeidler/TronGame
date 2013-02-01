@@ -19,11 +19,11 @@ public class Window extends JFrame implements ActionListener {
 	// create player
 	Player[] players;
 
-	Window(int x, int y) {
-		setUp(x, y);
+	Window(int x, int y, int numPlayersChosen) {
+		setUp(x, y, numPlayersChosen);
 	}
 
-	void setUp(int x, int y) {
+	void setUp(int x, int y, int numP) {
 		setBounds(100, 100, x, y);
 		paper.setBounds(0, 0, x, y);
 		paper.setBackground(Color.WHITE);
@@ -52,19 +52,23 @@ public class Window extends JFrame implements ActionListener {
 		// create grid
 		grid = new Grid(x, y);
 		// create players
-		players = new Player[4];
+		players = new Player[numP];
 		
-		players[0] = new Player(50, 50);
-		players[0].colour = Color.BLUE;
-
-		players[1] = new Player(450, 50);
-		players[1].colour = Color.green;
-
-		players[2] = new Player(50, 450);
-		players[2].colour = Color.red;
-
-		players[3] = new Player(450, 450);
-		players[3].colour = Color.ORANGE;
+		switch(numP) {
+		case 4:
+			players[3] = new Player(450, 450);
+			players[3].colour = Color.ORANGE;
+		case 3:
+			players[2] = new Player(50, 450);
+			players[2].colour = Color.red;
+		case 2:
+			players[0] = new Player(50, 50);
+			players[0].colour = Color.BLUE;
+	
+			players[1] = new Player(450, 50);
+			players[1].colour = Color.green;
+			break;
+		}
 
 		time.start();
 	}
@@ -140,8 +144,8 @@ public class Window extends JFrame implements ActionListener {
 
 		System.out.println("P1 dead:" + players[0].dead);
 		System.out.println("P2 dead:" + players[1].dead);
-		System.out.println("P3 dead:" + players[2].dead);
-		System.out.println("P4 dead:" + players[3].dead);		
+//		System.out.println("P3 dead:" + players[2].dead);
+//		System.out.println("P4 dead:" + players[3].dead);		
 
 	}
 
