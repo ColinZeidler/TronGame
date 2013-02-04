@@ -6,14 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 public class TheGame extends JFrame implements ActionListener {
 	static TheGame frame;
 	int numPlayersChosen = 2;
+	boolean keyToggle = false;
 
-	JButton launch;
+	JButton launch, rebind;
 	JRadioButton[] pButtons;
+	JTextField[][] bindings;
+	
+	JPanel keyPanel;
 
 	public TheGame(String string) {
 		super(string);
@@ -32,10 +38,20 @@ public class TheGame extends JFrame implements ActionListener {
 				pButtons[i] = new JRadioButton(pButtonLabels[i], false);
 			}
 			pButtons[i].setLocation(10, 10 + i * 20);
-			pButtons[i].setSize(200, 20);
+			pButtons[i].setSize(150, 20);
 			getContentPane().add(pButtons[i]);
 			playerNum.add(pButtons[i]);
 			pButtons[i].addActionListener(this);
+		}
+		
+		//text fields for keybindings
+		bindings = new JTextField[4][4];
+		String[] bindingHeaders = {"1", "2", "3", "4"};
+		String[] bindingLabels = {"Up", "Left", "Down", "Right"};
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				
+			}
 		}
 		
 		// Button to launch the actual game
@@ -44,9 +60,17 @@ public class TheGame extends JFrame implements ActionListener {
 		launch.setLocation(40, 80);
 		launch.addActionListener(this);
 		getContentPane().add(launch);
+		
+		//Button to bring up key bindings
+		rebind = new JButton("Edit Keys");
+		rebind.setSize(120, 30);
+		rebind.setLocation(40, 120);
+		rebind.addActionListener(this);
+		getContentPane().add(rebind);
+		
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(200, 150);
+		setSize(200, 190);
 		setLocation(200, 200);
 		setResizable(false);
 
@@ -65,6 +89,14 @@ public class TheGame extends JFrame implements ActionListener {
 		if (act == "Launch Game") {
 			new Window(500, 500, numPlayersChosen);
 			frame.setVisible(false);
+		} else if (act == "Edit Keys") {
+			if(!keyToggle) {
+				frame.setSize(400, 190);
+				keyToggle = true;
+			} else {
+				frame.setSize(200, 190);
+				keyToggle = false;
+			}
 		} else {
 			// Find the number of the button that was clicked
 			int buttonNumber = 0;
