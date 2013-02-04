@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -15,9 +16,15 @@ public class TheGame extends JFrame implements ActionListener {
 	int numPlayersChosen = 2;
 	boolean keyToggle = false;
 
+	final String[][] controls = { { "W", "A", "S", "D" },
+								{ "Up", "Left", "Down", "Right" }, 
+								{ "U", "H", "J", "K" },
+								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
+
 	JButton launch, rebind;
 	JRadioButton[] pButtons;
 	JTextField[][] bindings;
+	JLabel[] bindingLabel, headerLabel;
 	
 	JPanel keyPanel;
 
@@ -46,10 +53,29 @@ public class TheGame extends JFrame implements ActionListener {
 		
 		//text fields for keybindings
 		bindings = new JTextField[4][4];
-		String[] bindingHeaders = {"1", "2", "3", "4"};
+		bindingLabel = new JLabel[4];
+		headerLabel = new JLabel[4];
+		String[] bindingHeaders = {"P1", "P2", "P3", "P4"};
 		String[] bindingLabels = {"Up", "Left", "Down", "Right"};
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
+				if (j == 0 && i > 0) {
+					bindingLabel[i-1] = new JLabel(bindingLabels[i-1]);
+					bindingLabel[i-1].setLocation(200, 10 + i*20);
+					bindingLabel[i-1].setSize(50, 20);
+					getContentPane().add(bindingLabel[i-1]);
+				} else if (j!= 0 && i == 0) {
+					headerLabel[j-1] = new JLabel(bindingHeaders[j-1]);
+					headerLabel[j-1].setLocation(200 + j*50, 10);
+					headerLabel[j-1].setSize(50, 20);
+					getContentPane().add(headerLabel[j-1]);
+				} else if (j > 0 && i > 0){
+					bindings[i-1][j-1] = new JTextField(controls[j-1][i-1]);
+					bindings[i-1][j-1].setLocation(200 + j*50, 10 + i*20);
+					bindings[i-1][j-1].setSize(50, 20);
+					bindings[i-1][j-1].setEnabled(false);
+					getContentPane().add(bindings[i-1][j-1]);
+				}
 				
 			}
 		}
@@ -91,10 +117,20 @@ public class TheGame extends JFrame implements ActionListener {
 			frame.setVisible(false);
 		} else if (act == "Edit Keys") {
 			if(!keyToggle) {
-				frame.setSize(400, 190);
+				frame.setSize(470, 190);
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j< 4; j++) {
+						bindings[i][j].setEnabled(true);
+					}
+				}
 				keyToggle = true;
 			} else {
 				frame.setSize(200, 190);
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j< 4; j++) {
+						bindings[i][j].setEnabled(false);
+					}
+				}
 				keyToggle = false;
 			}
 		} else {
