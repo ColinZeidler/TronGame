@@ -97,6 +97,7 @@ public class TheGame extends JFrame implements ActionListener {
 		rebind.setSize(90, 30);
 		rebind.setLocation(10, 120);
 		rebind.addActionListener(this);
+		rebind.setEnabled(false);
 		keyPanel.add(rebind);
 		
 		//Panels
