@@ -21,7 +21,7 @@ public class TheGame extends JFrame implements ActionListener {
 								{ "U", "H", "J", "K" },
 								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
 
-	JButton launch, rebind;
+	JButton launch, rebindP1, rebindP2, rebindP3, rebindP4;
 	JRadioButton[] pButtons;
 	JTextField[][] bindings;
 	JLabel[] bindingLabel, headerLabel;
@@ -93,11 +93,10 @@ public class TheGame extends JFrame implements ActionListener {
 		launcher.add(launch);
 		
 		//Button to bring up key bindings
-		rebind = new JButton("Edit Keys");
-		rebind.setSize(90, 30);
-		rebind.setLocation(10, 120);
-		rebind.addActionListener(this);
-		keyPanel.add(rebind);
+		rebindP1 = new JButton("P1");
+		rebindP2 = new JButton("P2");
+		rebindP3 = new JButton("P3");
+		rebindP4 = new JButton("P4");
 		
 		//Panels
 		keyPanel.setSize(350, 160);
