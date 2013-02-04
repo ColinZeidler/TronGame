@@ -3,6 +3,7 @@ package tron.colin.zeidler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +15,6 @@ import javax.swing.JTextField;
 public class TheGame extends JFrame implements ActionListener {
 	static TheGame frame;
 	int numPlayersChosen = 2;
-	boolean keyToggle = false;
 
 	final String[][] controls = { { "W", "A", "S", "D" },
 								{ "Up", "Left", "Down", "Right" }, 
@@ -26,17 +26,22 @@ public class TheGame extends JFrame implements ActionListener {
 	JTextField[][] bindings;
 	JLabel[] bindingLabel, headerLabel;
 	
-	JPanel keyPanel;
+	JPanel keyPanel, launcher;
 
 	public TheGame(String string) {
 		super(string);
 
 		getContentPane().setLayout(null);
+		keyPanel = new JPanel(null);
+		keyPanel.setBorder(BorderFactory.createTitledBorder("Key bindings"));
+		
+		launcher = new JPanel(null);
+		launcher.setBorder(BorderFactory.createTitledBorder("Launcher"));
 		
 		//radio buttons
 		ButtonGroup playerNum = new ButtonGroup();
 		pButtons = new JRadioButton[3];
-		String[] pButtonLabels = { "2 Player", "3 PLayer", "4 Player" };
+		String[] pButtonLabels = { "2 Player", "3 Player", "4 Player" };
 
 		for (int i = 0; i < 3; i++) { // creating player number selections
 			if (i == 0) {
@@ -44,9 +49,9 @@ public class TheGame extends JFrame implements ActionListener {
 			} else {
 				pButtons[i] = new JRadioButton(pButtonLabels[i], false);
 			}
-			pButtons[i].setLocation(10, 10 + i * 20);
-			pButtons[i].setSize(150, 20);
-			getContentPane().add(pButtons[i]);
+			pButtons[i].setLocation(10, 15 + i * 20);
+			pButtons[i].setSize(80, 20);
+			launcher.add(pButtons[i]);
 			playerNum.add(pButtons[i]);
 			pButtons[i].addActionListener(this);
 		}
@@ -61,42 +66,49 @@ public class TheGame extends JFrame implements ActionListener {
 			for (int j = 0; j < 5; j++) {
 				if (j == 0 && i > 0) {
 					bindingLabel[i-1] = new JLabel(bindingLabels[i-1]);
-					bindingLabel[i-1].setLocation(200, 10 + i*20);
+					bindingLabel[i-1].setLocation(10, 10 + i*20);
 					bindingLabel[i-1].setSize(50, 20);
-					getContentPane().add(bindingLabel[i-1]);
+					keyPanel.add(bindingLabel[i-1]);
 				} else if (j!= 0 && i == 0) {
 					headerLabel[j-1] = new JLabel(bindingHeaders[j-1]);
-					headerLabel[j-1].setLocation(200 + j*50, 10);
-					headerLabel[j-1].setSize(50, 20);
-					getContentPane().add(headerLabel[j-1]);
+					headerLabel[j-1].setLocation(10 + j*65, 10);
+					headerLabel[j-1].setSize(65, 20);
+					keyPanel.add(headerLabel[j-1]);
 				} else if (j > 0 && i > 0){
 					bindings[i-1][j-1] = new JTextField(controls[j-1][i-1]);
-					bindings[i-1][j-1].setLocation(200 + j*50, 10 + i*20);
-					bindings[i-1][j-1].setSize(50, 20);
-					bindings[i-1][j-1].setEnabled(false);
-					getContentPane().add(bindings[i-1][j-1]);
+					bindings[i-1][j-1].setLocation(10 + j*65, 10 + i*20);
+					bindings[i-1][j-1].setSize(65, 20);
+					bindings[i-1][j-1].setEditable(false);
+					keyPanel.add(bindings[i-1][j-1]);
 				}
 				
 			}
 		}
 		
 		// Button to launch the actual game
-		launch = new JButton("Launch Game");
-		launch.setSize(120, 30);
-		launch.setLocation(40, 80);
+		launch = new JButton("Launch");
+		launch.setSize(110, 30);
+		launch.setLocation(10, 120);
 		launch.addActionListener(this);
-		getContentPane().add(launch);
+		launcher.add(launch);
 		
 		//Button to bring up key bindings
 		rebind = new JButton("Edit Keys");
-		rebind.setSize(120, 30);
-		rebind.setLocation(40, 120);
+		rebind.setSize(90, 30);
+		rebind.setLocation(10, 120);
 		rebind.addActionListener(this);
-		getContentPane().add(rebind);
+		keyPanel.add(rebind);
 		
+		//Panels
+		keyPanel.setSize(350, 160);
+		keyPanel.setLocation(140, 5);
+		getContentPane().add(keyPanel);
+		launcher.setSize(130, 160);
+		launcher.setLocation(5, 5);
+		getContentPane().add(launcher);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(200, 190);
+		setSize(500, 200);
 		setLocation(200, 200);
 		setResizable(false);
 
@@ -111,28 +123,13 @@ public class TheGame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent action) {
+
 		String act = action.getActionCommand();
-		if (act == "Launch Game") {
+		if (act == "Launch") {
 			new Window(500, 500, numPlayersChosen);
 			frame.setVisible(false);
 		} else if (act == "Edit Keys") {
-			if(!keyToggle) {
-				frame.setSize(470, 190);
-				for (int i = 0; i < 4; i++) {
-					for (int j = 0; j< 4; j++) {
-						bindings[i][j].setEnabled(true);
-					}
-				}
-				keyToggle = true;
-			} else {
-				frame.setSize(200, 190);
-				for (int i = 0; i < 4; i++) {
-					for (int j = 0; j< 4; j++) {
-						bindings[i][j].setEnabled(false);
-					}
-				}
-				keyToggle = false;
-			}
+			//do nothing right now
 		} else {
 			// Find the number of the button that was clicked
 			int buttonNumber = 0;
