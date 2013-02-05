@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener {
 	final String[][] controls = { { "W", "A", "S", "D" },
 								{ "Up", "Left", "Down", "Right" }, 

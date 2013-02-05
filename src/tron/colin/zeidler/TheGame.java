@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class TheGame extends JFrame implements ActionListener {
 	static TheGame frame;
 	int numPlayersChosen = 2;
@@ -28,7 +29,7 @@ public class TheGame extends JFrame implements ActionListener {
 	
 	JPanel keyPanel, launcher;
 
-	public TheGame(String string) {
+	TheGame(String string) {
 		super(string);
 
 		getContentPane().setLayout(null);
@@ -135,6 +136,8 @@ public class TheGame extends JFrame implements ActionListener {
 
 		frame = new TheGame("Launcher");
 		frame.setVisible(true);
+		
+		
 
 	}
 
@@ -145,7 +148,7 @@ public class TheGame extends JFrame implements ActionListener {
 		if (act == "Launch") {
 			new Window(500, 500, numPlayersChosen);
 			frame.setVisible(false);
-		} else if (act == "P1") { //need a window that will return an array of keys that get pressed.
+		} else if (act == "P1") {
 			//do nothing
 		} else if (act == "P2") {
 			//do nothing
