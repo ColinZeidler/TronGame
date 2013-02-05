@@ -97,6 +97,24 @@ public class TheGame extends JFrame implements ActionListener {
 		rebindP2 = new JButton("P2");
 		rebindP3 = new JButton("P3");
 		rebindP4 = new JButton("P4");
+		//button positions
+		rebindP1.setSize(65, 20);
+		rebindP1.setLocation(75,110);
+		rebindP1.addActionListener(this);
+		rebindP2.setSize(65, 20);
+		rebindP2.setLocation(140, 110);
+		rebindP2.addActionListener(this);
+		rebindP3.setSize(65, 20);
+		rebindP3.setLocation(205, 110);
+		rebindP3.addActionListener(this);
+		rebindP4.setSize(65, 20);
+		rebindP4.setLocation(270, 110);
+		rebindP4.addActionListener(this);
+		//add buttons to panel
+		keyPanel.add(rebindP1);
+		keyPanel.add(rebindP2);
+		keyPanel.add(rebindP3);
+		keyPanel.add(rebindP4);
 		
 		//Panels
 		keyPanel.setSize(350, 160);
@@ -127,8 +145,14 @@ public class TheGame extends JFrame implements ActionListener {
 		if (act == "Launch") {
 			new Window(500, 500, numPlayersChosen);
 			frame.setVisible(false);
-		} else if (act == "Edit Keys") {
-			//do nothing right now
+		} else if (act == "P1") { //need a window that will return an array of keys that get pressed.
+			//do nothing
+		} else if (act == "P2") {
+			//do nothing
+		} else if (act == "P3") {
+			//do nothing
+		} else if (act == "P4") {
+			//do nothing
 		} else {
 			// Find the number of the button that was clicked
 			int buttonNumber = 0;
