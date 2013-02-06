@@ -2,6 +2,8 @@ package tron.colin.zeidler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -31,6 +33,8 @@ public class TheGame extends JFrame implements ActionListener {
 
 	TheGame(String string) {
 		super(string);
+		
+
 
 		getContentPane().setLayout(null);
 		keyPanel = new JPanel(null);
@@ -56,6 +60,7 @@ public class TheGame extends JFrame implements ActionListener {
 			playerNum.add(pButtons[i]);
 			pButtons[i].addActionListener(this);
 		}
+		
 		
 		//text fields for keybindings
 		bindings = new JTextField[4][4];
@@ -129,6 +134,7 @@ public class TheGame extends JFrame implements ActionListener {
 		setSize(500, 200);
 		setLocation(200, 200);
 		setResizable(false);
+		
 
 	}
 
