@@ -20,11 +20,11 @@ public class TheGame extends JFrame implements ActionListener {
 			{ "Up", "Left", "Down", "Right" }, { "U", "H", "J", "K" },
 			{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
 
-	JButton launch, rebind;
+	JButton launch, rebindP1, rebindP2, rebindP3, rebindP4;
 	JRadioButton[] pButtons;
 	JTextField[][] bindings;
 	JLabel[] bindingLabel, headerLabel;
-
+	JLabel save;
 	JPanel keyPanel, launcher;
 
 	public TheGame(String string) {
@@ -79,7 +79,7 @@ public class TheGame extends JFrame implements ActionListener {
 					bindings[i - 1][j - 1]
 							.setLocation(10 + j * 65, 10 + i * 20);
 					bindings[i - 1][j - 1].setSize(65, 20);
-					bindings[i - 1][j - 1].setEditable(false);
+					bindings[i - 1][j - 1].setEditable(true);
 					keyPanel.add(bindings[i - 1][j - 1]);
 				}
 
@@ -94,12 +94,32 @@ public class TheGame extends JFrame implements ActionListener {
 		launcher.add(launch);
 
 		// Button to bring up key bindings
-		rebind = new JButton("Edit Keys");
-		rebind.setSize(90, 30);
-		rebind.setLocation(10, 120);
-		rebind.addActionListener(this);
-		rebind.setEnabled(false);
-		keyPanel.add(rebind);
+		rebindP1 = new JButton("P1");
+		rebindP2 = new JButton("P2");
+		rebindP3 = new JButton("P3");
+		rebindP4 = new JButton("P4");
+		save = new JLabel("Save");
+		save.setLocation(10, 110);
+		save.setSize(50, 20);
+		keyPanel.add(save);
+		// button positions
+		rebindP1.setSize(65, 20);
+		rebindP1.setLocation(75, 110);
+		rebindP1.addActionListener(this);
+		rebindP2.setSize(65, 20);
+		rebindP2.setLocation(140, 110);
+		rebindP2.addActionListener(this);
+		rebindP3.setSize(65, 20);
+		rebindP3.setLocation(205, 110);
+		rebindP3.addActionListener(this);
+		rebindP4.setSize(65, 20);
+		rebindP4.setLocation(270, 110);
+		rebindP4.addActionListener(this);
+		// add buttons to panel
+		keyPanel.add(rebindP1);
+		keyPanel.add(rebindP2);
+		keyPanel.add(rebindP3);
+		keyPanel.add(rebindP4);
 
 		// Panels
 		keyPanel.setSize(350, 160);
