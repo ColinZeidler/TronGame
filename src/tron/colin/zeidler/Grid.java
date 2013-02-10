@@ -1,5 +1,7 @@
 package tron.colin.zeidler;
 
+import java.awt.Graphics;
+import java.awt.Color;
 public class Grid {
 	int[][] grid;
 
@@ -13,14 +15,12 @@ public class Grid {
 			}
 		}
 	}
-<<<<<<< HEAD
 	// adding comments to make sure this will work
 	void draw(Graphics g) {
 		for (int i =0; i< grid.length; i++) {
 			for (int j = 0; j < grid[i].length;j++) {
 				if (grid[i][j] == 0) {
 					g.setColor(Color.WHITE);
-=======
 
 	public void print() {
 		for (int i = 0; i < grid.length; i++) {
@@ -43,7 +43,6 @@ public class Grid {
 				//	x = check, 0 = do nothing		x0
 				if(grid[aPlayer.x / 5][aPlayer.y / 5] != 0 || grid[aPlayer.x / 5][aPlayer.y / 5 + 1] != 0) {
 					aPlayer.dead = true;
->>>>>>> 6709bc88c5ed3e16bce59fe750cf14d693e16515
 				}
 			} else if (aPlayer.xSpeed > 0) {
 				//	Player grid looks like this: 	0x
