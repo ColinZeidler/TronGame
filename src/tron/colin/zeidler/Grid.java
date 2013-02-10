@@ -1,7 +1,5 @@
 package tron.colin.zeidler;
 
-import java.awt.Graphics;
-import java.awt.Color;
 public class Grid {
 	int[][] grid;
 
@@ -15,12 +13,6 @@ public class Grid {
 			}
 		}
 	}
-	// adding comments to make sure this will work
-	void draw(Graphics g) {
-		for (int i =0; i< grid.length; i++) {
-			for (int j = 0; j < grid[i].length;j++) {
-				if (grid[i][j] == 0) {
-					g.setColor(Color.WHITE);
 
 	public void print() {
 		for (int i = 0; i < grid.length; i++) {
