@@ -19,7 +19,7 @@ public class TheGame extends JFrame implements ActionListener {
 	static TheGame frame;
 	int numPlayersChosen = 2;
 
-	final String[][] controls = { { "W", "A", "S", "D" },
+	String[][] controls = { { "W", "A", "S", "D" },
 								{ "Up", "Left", "Down", "Right" }, 
 								{ "U", "H", "J", "K" },
 								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
@@ -84,7 +84,7 @@ public class TheGame extends JFrame implements ActionListener {
 					bindings[i-1][j-1] = new JTextField(controls[j-1][i-1]);
 					bindings[i-1][j-1].setLocation(10 + j*65, 10 + i*20);
 					bindings[i-1][j-1].setSize(65, 20);
-					bindings[i-1][j-1].setEditable(false);
+					bindings[i-1][j-1].setEditable(true);
 					keyPanel.add(bindings[i-1][j-1]);
 				}
 				
@@ -155,7 +155,9 @@ public class TheGame extends JFrame implements ActionListener {
 			new Window(500, 500, numPlayersChosen);
 			frame.setVisible(false);
 		} else if (act == "P1") {
-			//do nothing
+			for (int i = 0; i < controls[0].length; i++) {
+				controls[0][i] = bindings[i][0].getText().toUpperCase();
+			}
 		} else if (act == "P2") {
 			//do nothing
 		} else if (act == "P3") {
