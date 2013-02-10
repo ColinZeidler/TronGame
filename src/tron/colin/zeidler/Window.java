@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener {
-	final String[][] controls = { { "W", "A", "S", "D" },
+	String[][] controls = { { "W", "A", "S", "D" },
 								{ "Up", "Left", "Down", "Right" }, 
 								{ "U", "H", "J", "K" },
 								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
@@ -25,11 +25,12 @@ public class Window extends JFrame implements ActionListener {
 	// create player
 	Player[] players;
 
-	Window(int x, int y, int numPlayersChosen) {
-		setUp(x, y, numPlayersChosen);
+	Window(int x, int y, int numPlayersChosen, String[][] controls) {
+		setUp(x, y, numPlayersChosen, controls);
 	}
 
-	void setUp(int x, int y, int numP) {
+	void setUp(int x, int y, int numP, String[][] controls2) {
+		controls = controls2;
 		setBounds(100, 100, x, y);
 		paper.setBounds(0, 0, x, y);
 		paper.setBackground(Color.WHITE);

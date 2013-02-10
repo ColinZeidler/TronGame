@@ -20,30 +20,27 @@ public class TheGame extends JFrame implements ActionListener {
 	int numPlayersChosen = 2;
 
 	String[][] controls = { { "W", "A", "S", "D" },
-								{ "Up", "Left", "Down", "Right" }, 
-								{ "U", "H", "J", "K" },
-								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
+			{ "Up", "Left", "Down", "Right" }, { "U", "H", "J", "K" },
+			{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
 
 	JButton launch, rebindP1, rebindP2, rebindP3, rebindP4;
 	JRadioButton[] pButtons;
 	JTextField[][] bindings;
 	JLabel[] bindingLabel, headerLabel;
-	
+	JLabel save;
 	JPanel keyPanel, launcher;
 
 	TheGame(String string) {
 		super(string);
-		
-
 
 		getContentPane().setLayout(null);
 		keyPanel = new JPanel(null);
 		keyPanel.setBorder(BorderFactory.createTitledBorder("Key bindings"));
-		
+
 		launcher = new JPanel(null);
 		launcher.setBorder(BorderFactory.createTitledBorder("Launcher"));
-		
-		//radio buttons
+
+		// radio buttons
 		ButtonGroup playerNum = new ButtonGroup();
 		pButtons = new JRadioButton[3];
 		String[] pButtonLabels = { "2 Player", "3 Player", "4 Player" };
@@ -60,52 +57,57 @@ public class TheGame extends JFrame implements ActionListener {
 			playerNum.add(pButtons[i]);
 			pButtons[i].addActionListener(this);
 		}
-		
-		
-		//text fields for keybindings
+
+		// text fields for keybindings
 		bindings = new JTextField[4][4];
 		bindingLabel = new JLabel[4];
 		headerLabel = new JLabel[4];
-		String[] bindingHeaders = {"P1", "P2", "P3", "P4"};
-		String[] bindingLabels = {"Up", "Left", "Down", "Right"};
+		String[] bindingHeaders = { "P1", "P2", "P3", "P4" };
+		String[] bindingLabels = { "Up", "Left", "Down", "Right" };
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				if (j == 0 && i > 0) {
-					bindingLabel[i-1] = new JLabel(bindingLabels[i-1]);
-					bindingLabel[i-1].setLocation(10, 10 + i*20);
-					bindingLabel[i-1].setSize(50, 20);
-					keyPanel.add(bindingLabel[i-1]);
-				} else if (j!= 0 && i == 0) {
-					headerLabel[j-1] = new JLabel(bindingHeaders[j-1]);
-					headerLabel[j-1].setLocation(10 + j*65, 10);
-					headerLabel[j-1].setSize(65, 20);
-					keyPanel.add(headerLabel[j-1]);
-				} else if (j > 0 && i > 0){
-					bindings[i-1][j-1] = new JTextField(controls[j-1][i-1]);
-					bindings[i-1][j-1].setLocation(10 + j*65, 10 + i*20);
-					bindings[i-1][j-1].setSize(65, 20);
-					bindings[i-1][j-1].setEditable(true);
-					keyPanel.add(bindings[i-1][j-1]);
+					bindingLabel[i - 1] = new JLabel(bindingLabels[i - 1]);
+					bindingLabel[i - 1].setLocation(10, 10 + i * 20);
+					bindingLabel[i - 1].setSize(50, 20);
+					keyPanel.add(bindingLabel[i - 1]);
+				} else if (j != 0 && i == 0) {
+					headerLabel[j - 1] = new JLabel(bindingHeaders[j - 1]);
+					headerLabel[j - 1].setLocation(10 + j * 65, 10);
+					headerLabel[j - 1].setSize(65, 20);
+					keyPanel.add(headerLabel[j - 1]);
+				} else if (j > 0 && i > 0) {
+					bindings[i - 1][j - 1] = new JTextField(
+							controls[j - 1][i - 1]);
+					bindings[i - 1][j - 1]
+							.setLocation(10 + j * 65, 10 + i * 20);
+					bindings[i - 1][j - 1].setSize(65, 20);
+					bindings[i - 1][j - 1].setEditable(true);
+					keyPanel.add(bindings[i - 1][j - 1]);
 				}
-				
+
 			}
 		}
-		
+
 		// Button to launch the actual game
 		launch = new JButton("Launch");
 		launch.setSize(110, 30);
 		launch.setLocation(10, 120);
 		launch.addActionListener(this);
 		launcher.add(launch);
-		
-		//Button to bring up key bindings
+
+		// Button to bring up key bindings
+		save = new JLabel("Save");
 		rebindP1 = new JButton("P1");
 		rebindP2 = new JButton("P2");
 		rebindP3 = new JButton("P3");
 		rebindP4 = new JButton("P4");
-		//button positions
+		// button positions
+		save.setSize(50, 20);
+		save.setLocation(10, 110);
+		keyPanel.add(save);
 		rebindP1.setSize(65, 20);
-		rebindP1.setLocation(75,110);
+		rebindP1.setLocation(75, 110);
 		rebindP1.addActionListener(this);
 		rebindP2.setSize(65, 20);
 		rebindP2.setLocation(140, 110);
@@ -116,13 +118,13 @@ public class TheGame extends JFrame implements ActionListener {
 		rebindP4.setSize(65, 20);
 		rebindP4.setLocation(270, 110);
 		rebindP4.addActionListener(this);
-		//add buttons to panel
+		// add buttons to panel
 		keyPanel.add(rebindP1);
 		keyPanel.add(rebindP2);
 		keyPanel.add(rebindP3);
 		keyPanel.add(rebindP4);
-		
-		//Panels
+
+		// Panels
 		keyPanel.setSize(350, 160);
 		keyPanel.setLocation(140, 5);
 		getContentPane().add(keyPanel);
@@ -134,7 +136,6 @@ public class TheGame extends JFrame implements ActionListener {
 		setSize(500, 200);
 		setLocation(200, 200);
 		setResizable(false);
-		
 
 	}
 
@@ -142,8 +143,6 @@ public class TheGame extends JFrame implements ActionListener {
 
 		frame = new TheGame("Launcher");
 		frame.setVisible(true);
-		
-		
 
 	}
 
@@ -152,18 +151,17 @@ public class TheGame extends JFrame implements ActionListener {
 
 		String act = action.getActionCommand();
 		if (act == "Launch") {
-			new Window(500, 500, numPlayersChosen);
+			new Window(500, 500, numPlayersChosen, controls);
 			frame.setVisible(false);
 		} else if (act == "P1") {
-			for (int i = 0; i < controls[0].length; i++) {
-				controls[0][i] = bindings[i][0].getText().toUpperCase();
-			}
+			setKeys(0);
+
 		} else if (act == "P2") {
-			//do nothing
+			setKeys(1);
 		} else if (act == "P3") {
-			//do nothing
+			setKeys(2);
 		} else if (act == "P4") {
-			//do nothing
+			setKeys(3);
 		} else {
 			// Find the number of the button that was clicked
 			int buttonNumber = 0;
@@ -185,6 +183,28 @@ public class TheGame extends JFrame implements ActionListener {
 			}
 		}
 
+	}
+	
+	private void setKeys(int player) {
+		for (int i = 0; i < controls[player].length; i++) {
+			String key = bindings[i][player].getText();
+			if (key.length() > 1) {
+				key = key.substring(0, 1).toUpperCase() + key.substring(1);
+				bindings[i][player].setText(key);
+				controls[player][i] = key;
+			} else if (key.equals("0") || key.equals("1")
+					|| key.equals("2") || key.equals("3")
+					|| key.equals("4") || key.equals("5")
+					|| key.equals("6") || key.equals("7")
+					|| key.equals("8") || key.equals("9")) {
+				key = "NumPad-" + key;
+				bindings[i][player].setText(key);
+				controls[player][i] = key;
+			} else {
+				bindings[i][player].setText(key.toUpperCase());
+				controls[player][i] = key.toUpperCase();
+			}
+		}
 	}
 
 }
