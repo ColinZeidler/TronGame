@@ -17,6 +17,7 @@ public class Window extends JFrame implements ActionListener {
 								{ "U", "H", "J", "K" },
 								{ "NumPad-8", "NumPad-4", "NumPad-5", "NumPad-6" } };
 
+	
 	JPanel paper = new JPanel();
 	Timer time = new Timer(30, this);
 	Window window;
